@@ -1,12 +1,14 @@
-## Realtime Irish Train Data
+## Realtime Irish Train Data in JSON
+
+### Why?
+
+AngularJS works with JSON not XML. JSON is preferred to XML for RESTful API's. JSON takes less bandwidth to transmit, is simpler to understand visually and is far easier to deal with on the client as it works seamlessly with javascript.
 
 
-NodeJS server gets real time train data in XML format from the Irish Rail API. Then converts the XML data to an array of javascript objects. Iterates through the array and transmits each train data object in a separate socket.io packet.
+### App Functionality
 
+NodeJS server gets real time train data in XML format from the Irish Rail API. Converts the XML data to an array of javascript objects. Iterates through the array and transmits each train data object in a separate socket.io packet. As socket.io serialises the data as JSON the client will receive the train data as JSON. 
 
-## Why?
-
-AngularJS works with JSON not XML. JSON is preferred for RESTful API's in that it takes less bandwidth to transmit, is simpler and is far easier to deal with on the client if you are using javascript.
 
 
 ### Main Technologies Used
