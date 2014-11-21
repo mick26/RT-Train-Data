@@ -1,0 +1,22 @@
+{
+  "name": "RT-Train-Data",
+  "version": "0.0.1",
+  "author": "Michael Cullen",
+  "description": "RT Irish Train Data",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "colors": "^1.0.3",
+    "errorhandler": "^1.2.2",
+    "express": "^4.10.1",
+    "request": "^2.48.0",
+    "socket.io": "^1.2.0",
+    "underscore": "^1.7.0",
+    "xml2js": "^0.4.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.2.2"
+  }
+}
