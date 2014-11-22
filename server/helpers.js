@@ -32,6 +32,39 @@ var trainDataAy = [];
 // 	PublicMessage:"" 
 // };
 
+// var trainObj = {
+// 	TrainStatus:"", 
+// 	TrainLatitude:"", 
+// 	TrainLongitude:"", 
+// 	TrainCode:"", 
+// 	TrainDate:"", 
+// 	PublicMessage:"" 
+// };
+
+
+/*
+
+trainObj['geometry'] = { "type":"Point", "coordinates":["",""] }
+trainObj['type'] = "feature";
+trainObj['properties'] = {"id": "", TrainStatus":"", TrainDate:"", "PublicMessage":"" };
+
+
+var trainObj = {
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            34.52925557095562,
+            44.70102448762503
+        ]
+    },
+    "type": "Feature",
+    "properties": { }
+};
+
+*/
+
+
+
 
 module.exports = {
 
@@ -127,18 +160,38 @@ module.exports = {
 					 * Note the use of the condition operator: test ? expression1 : expression2
 					 * Take care of case when trains are stopped/dropped e.g. at night 
 					 */				
-					trainObj['TrainStatus'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ? 
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainStatus : "undefined";
-					trainObj['TrainLatitude'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLatitude : "undefined";
-					trainObj['TrainLongitude'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLongitude : "undefined";
-					trainObj['TrainCode'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainCode : "undefined";
-					trainObj['TrainDate'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainDate : "undefined";
-					trainObj['PublicMessage'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
-						result.ArrayOfObjTrainPositions.objTrainPositions[i].PublicMessage : "undefined";
+
+					trainObj['geometry'] = { 
+						"type":"Point", 
+						"coordinates":[result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLongitude,
+										result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLatitude] 
+									};
+
+					trainObj['type'] = "Feature";
+
+					trainObj['properties'] = {
+						"id":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainCode,
+						"TrainStatus":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainStatus, 
+						"TrainDate":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainDate, 
+						"PublicMessage":result.ArrayOfObjTrainPositions.objTrainPositions[i].PublicMessage 
+					};
+
+
+
+
+
+					// trainObj['TrainStatus'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ? 
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainStatus : "undefined";
+					// trainObj['TrainLatitude'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLatitude : "undefined";
+					// trainObj['TrainLongitude'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainLongitude : "undefined";
+					// trainObj['TrainCode'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainCode : "undefined";
+					// trainObj['TrainDate'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainDate : "undefined";
+					// trainObj['PublicMessage'] = (result.ArrayOfObjTrainPositions.objTrainPositions[i]) ?
+					// 	result.ArrayOfObjTrainPositions.objTrainPositions[i].PublicMessage : "undefined";
 
 					trainAy.push(trainObj);	//Add JS Object to Array
 
@@ -146,6 +199,8 @@ module.exports = {
 				}
 			}
 		})	
+
+
 		return trainAy; //return array of JS Objects
 	}
 

@@ -36,7 +36,7 @@ I was going to use a const for POLL_INTERVAL but it
 generates an error with 'use strict'
 ============================================================ */
 var numberOfTrains = 0;
-var POLL_INTERVAL = 20000; //20 seconds
+var POLL_INTERVAL = 10000; //milli seconds
 
 /* ========================================================== 
 Port the server will listen on
@@ -73,7 +73,7 @@ setInterval(function() {
 	 * Get Train XML data
 	 */
 	var xml = helpers.getTrainXmlData()
-	
+	var geoJsonTrainObj = {};
 
 	if(xml) {
 		
@@ -87,16 +87,18 @@ setInterval(function() {
 			numberOfTrains = trainDataAy.length;
 			console.log("XML has been parsed");
 
-			//Loop through the array
-			for(var i=0; i<numberOfTrains; i++) {
-				var txData = trainDataAy[i];
+			/*
+			 * Build the javascript Object in Geo JSON format
+			 */
+			geoJsonTrainObj['type'] ="FeatureCollection";
+			geoJsonTrainObj['features'] = trainDataAy;
 
-				/**
-				 * Send each Object in a separate Socket.io packet
-				 * Socket.io serialises data to JSON automatically
-				 */
-				io.sockets.emit('trainData', txData)
-			}
+			/**
+			 * Send the Object via Socket.io
+			 * Socket.io serialises data to JSON automatically
+			 */
+			io.sockets.emit('trainData', geoJsonTrainObj);
+			
 		}
 	}
 }, POLL_INTERVAL);
@@ -109,6 +111,4 @@ Start server listening on a port
 httpServ.listen(app.get('port'), function(req, res) {
     console.log('Express server listening on port ' .green + app.get('port') );
 });
-
-
 
