@@ -75,7 +75,20 @@ module.exports = {
 
 		var xmlData = {};
 
-		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML', function (error, response, body) {
+//		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML', function (error, response, body) {
+//ALL
+//		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML_WithTrainType?TrainType=A', function (error, response, body) {
+//Main Line
+//		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML_WithTrainType?TrainType=M', function (error, response, body) {
+//DART
+//		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML_WithTrainType?TrainType=D', function (error, response, body) {
+//Suburban
+//		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML_WithTrainType?TrainType=S', function (error, response, body) {
+
+
+		request('http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML_WithTrainType?TrainType=D', function (error, response, body) {
+
+
 			//				
 			//	console.log('server encoded the data as: ' + (response.headers['content-encoding'] || 'identity'));
 		    //	console.log('the decoded data is: ' + body);
@@ -200,7 +213,7 @@ module.exports = {
 			}
 		})	
 
-
+		completeResponse = "";
 		return trainAy; //return array of JS Objects
 	}
 

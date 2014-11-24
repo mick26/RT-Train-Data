@@ -69,20 +69,24 @@ Periodically
 ============================================================ */
 setInterval(function() {
 
+	console.log("@ setInterval START");//TEST
 	/**
 	 * Get Train XML data
 	 */
 	var xml = helpers.getTrainXmlData()
 	var geoJsonTrainObj = {};
 
-	if(xml) {
+	if(typeof xml != undefined) {
 		
 		/**
 	 	 * Parse the XML data into an Array of Javascript Objects
 	 	 */		
 		var trainDataAy = helpers.parseXml();
 
-		if(trainDataAy) {
+
+
+		if (typeof trainDataAy != undefined) {
+		//if(trainDataAy) {
 
 			numberOfTrains = trainDataAy.length;
 			console.log("XML has been parsed");
@@ -98,8 +102,14 @@ setInterval(function() {
 			 * Socket.io serialises data to JSON automatically
 			 */
 			io.sockets.emit('trainData', geoJsonTrainObj);
-			
+
+
+			geoJsonTrainObj = undefined;
+			trainDataAy = undefined;
+			numberOfTrains = 0;
+			xml = undefined;	
 		}
+
 	}
 }, POLL_INTERVAL);
 
@@ -111,4 +121,6 @@ Start server listening on a port
 httpServ.listen(app.get('port'), function(req, res) {
     console.log('Express server listening on port ' .green + app.get('port') );
 });
+
+
 
