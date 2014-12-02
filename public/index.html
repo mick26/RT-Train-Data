@@ -1,3 +1,13 @@
+<!-- 
+
+https://github.com/perliedman/leaflet-realtime
+http://www.programmableweb.com/api/irish-rail-realtime
+http://api.irishrail.ie/realtime/realtime.asmx/getCurrentTrainsXML
+
+https://wanderdrone.appspot.com/
+http://www.irishrail.ie/timetables/live-map-commuter
+http://www.gerardcondon.com/projects/irishrail/index.html
+ -->
 
 <!DOCTYPE html>
 
@@ -5,18 +15,34 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Real Time Train Locations</title>
+    <title>Real Time Irish Train Locations</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />    
+    <link rel="stylesheet" href="css/style.css" />
+
 </head>
 
-<body ng-controller="MainCtrl">   
-        
-        {{dataObj}}
 
+<body ng-controller="MainCtrl">   
+   <div>
+        <p>
+        Status = {{dataObj.TrainStatus}} <br/>
+        Latitude = {{dataObj.TrainLatitude}} <br/>
+        Longitude = {{dataObj.TrainLongitude}} <br/>
+        Code = {{dataObj.TrainCode}} <br/>
+        Date = {{dataObj.TrainDate}} <br/>
+        Message = {{dataObj.PublicMessage}} <br/>
+        </p>
    </div>
+
+    <!-- Map will be rendered here -->
+    <div id="map"></div>
 
 
     <!-- JS -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>    
+    <script src="lib/leaflet-realtime/dist/leaflet-realtime.js"></script>
     <script src="bower_components/socket.io-client/socket.io.js"></script>  
     <!-- Brian Fords module for using Socket.io with Angular -->  
     <script type="text/javascript" src="bower_components/angular-socket-io/socket.js"></script>

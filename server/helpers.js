@@ -153,11 +153,8 @@ module.exports = {
 			if(err)
 				console.log("Error parsingString " +err);
 
-			if(result) {
+			if(result && result.ArrayOfObjTrainPositions.objTrainPositions) {
 				console.log("Success with parseString ");
-
-
-
 
 				numTrains = result.ArrayOfObjTrainPositions.objTrainPositions.length;
 				console.log("NumOfTrains=" +numTrains); //TEST
@@ -185,8 +182,9 @@ module.exports = {
 					trainObj['properties'] = {
 						"id":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainCode,
 						"TrainStatus":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainStatus, 
-						"TrainDate":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainDate, 
-						"PublicMessage":result.ArrayOfObjTrainPositions.objTrainPositions[i].PublicMessage 
+						"TrainDate":result.ArrayOfObjTrainPositions.objTrainPositions[i].TrainDate,
+						"PublicMessage": result.ArrayOfObjTrainPositions.objTrainPositions[i].PublicMessage,
+						"direction": result.ArrayOfObjTrainPositions.objTrainPositions[i].Direction
 					};
 
 
