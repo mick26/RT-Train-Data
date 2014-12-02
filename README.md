@@ -35,7 +35,6 @@ The client renders a map in the browser with the help of [leafletJS](http://leaf
 - bower install
 - node server.js
 - browse to _http://localhost:3000/_
-- Enable browsers developer tools (e.g. turn on Firebug)
 - Be patient
 - Realtime DART train locations will appear on a map centered around connolly station
 - Click on an icon for specific train info
