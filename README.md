@@ -8,7 +8,7 @@ AngularJS works with JSON not XML. JSON is preferred to XML for RESTful API's. J
 
 ### App Functionality
 
-NodeJS server gets real time train data in XML format from the Irish Rail API for the [DART commuter rail](http://www.irishrail.ie/about-us/dart-commuter). The XML data is then converted to a javascript. String manipulation is performed to create an Object in the [Geo JSON format](http://geojson.org/geojson-spec.html). The Object is send via socket.io. Socket.io serialises the transmitted data as JSON. The client will receive the train data as Geo JSON.
+NodeJS server gets real time train data in XML format from the Irish Rail API for the [DART commuter rail](http://www.irishrail.ie/about-us/dart-commuter). The XML data is then converted to javascript. String manipulation is performed to create an Object in the [Geo JSON format](http://geojson.org/geojson-spec.html). The Object is send via socket.io. Socket.io serialises the transmitted data as JSON. The client will receive the train data as Geo JSON.
 
 The client renders a map in the browser with the help of [leafletJS](http://leafletjs.com/). [Leaflet-realtime](https://github.com/perliedman/leaflet-realtime) is used to work with the realtime data read from the server. 
 
